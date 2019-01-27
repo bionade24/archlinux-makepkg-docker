@@ -1,6 +1,6 @@
 FROM base/archlinux
 
-RUN pacman -Syuq --needed --noconfirm git base-devel sudo namcap openssh  pyalpm asp
+RUN pacman -Syuq  --noconfirm git base-devel sudo namcap openssh  pyalpm asp
 
 RUN    echo "Defaults        lecture = never" > /etc/sudoers.d/privacy \
     && echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel \
@@ -11,7 +11,7 @@ WORKDIR /home/builder
 VOLUME ["/home/builder/.ssh"]
 
 RUN    git clone https://aur.archlinux.org/pikaur.git \
-    && cd yaourt \
+    && cd pikaur \
     && makepkg -si --noconfirm \
     && cd .. \
     && rm -rf pikaur
